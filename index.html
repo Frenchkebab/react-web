@@ -8,33 +8,27 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById('root');
-    const Title = (
-      <h3 id="title" onMouseEnter={() => console.log('mouse entered')}>
-        Hello I'm a title
-      </h3>
-    );
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log('mouse entered')}>
+          Hello I'm a title
+        </h3>
+      );
+    }
 
-    const Button = (
+    const Button = () => (
       <button style={{ backgroundColor: 'tomato' }} onClick={() => console.log(`I'm clicked`)}>
         Click me
       </button>
     );
 
-    /* const h3 = React.createElement(
-      'h3',
-      {
-        onMouseEnter: () => console.log('mouse enter'),
-      },
-      "Hello I'm a h3"
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
     );
-    const btn = React.createElement(
-      'button', 
-      {
-        onClick: () => console.log('I am clicked'),
-      },
-      'Click me'
-    );*/
-    const container = React.createElement('div', null, [Title, Button]);
-    ReactDOM.render(container, root); // render span 'inside' of 'root'
+
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
