@@ -10,11 +10,21 @@
   ></script>
   <script>
     const root = document.getElementById('root');
-    const span = React.createElement(
-      'span',
-      { id: 'sexy-span', style: { color: 'red' } },
-      "Hello I'm a span"
+    const h3 = React.createElement(
+      'h3',
+      {
+        onMouseEnter: () => console.log('mouse enter'),
+      },
+      "Hello I'm a h3"
     );
-    ReactDOM.render(span, root); // render span 'inside' of 'root'
+    const btn = React.createElement(
+      'button',
+      {
+        onClick: () => console.log('I am clicked'),
+      },
+      'Click me'
+    );
+    const container = React.createElement('div', null, [h3, btn]);
+    ReactDOM.render(container, root); // render span 'inside' of 'root'
   </script>
 </html>
