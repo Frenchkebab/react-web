@@ -9,14 +9,14 @@
   <script type="text/babel">
     const App = () => {
       const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
+      const [inverted, setInverted] = React.useState(false);
       const onChange = (event) => {
         setAmount(event.target.value);
       };
       const reset = () => setAmount(0);
       const onFlip = () => {
         reset();
-        setFlipped((flipped) => !flipped);
+        setInverted((inverted) => !inverted);
       };
       return (
         <div>
@@ -24,27 +24,27 @@
           <div>
             <label htmlFor="minutes">Minutes</label>
             <input
-              value={!flipped ? amount : amount * 60}
+              value={!inverted ? amount : amount * 60}
               id="miuntes"
               placeholder="Minutes"
               type="number"
               onChange={onChange}
-              disabled={flipped}
+              disabled={inverted}
             />
           </div>
           <div>
             <label htmlFor="hours">Hours</label>
             <input
-              value={flipped ? amount : Math.round(amount / 60)}
+              value={inverted ? amount : Math.round(amount / 60)}
               id="hours"
               placeholders="hours"
               type="number"
-              disabled={!flipped}
+              disabled={!inverted}
               onChange={onChange}
             />
           </div>
           <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>Flip</button>
+          <button onClick={onFlip}>{inverted ? 'Turn back' : 'Invert'}</button>
         </div>
       );
     };
