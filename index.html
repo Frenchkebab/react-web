@@ -7,7 +7,7 @@
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const App = () => {
+    const MinutesToHours = () => {
       const [amount, setAmount] = React.useState(0);
       const [inverted, setInverted] = React.useState(false);
       const onChange = (event) => {
@@ -18,9 +18,9 @@
         reset();
         setInverted((inverted) => !inverted);
       };
+
       return (
         <div>
-          <h1>Super Converter</h1>
           <div>
             <label htmlFor="minutes">Minutes</label>
             <input
@@ -45,6 +45,31 @@
           </div>
           <button onClick={reset}>Reset</button>
           <button onClick={onFlip}>{inverted ? 'Turn back' : 'Invert'}</button>
+        </div>
+      );
+    };
+
+    const KmToMiles = () => {
+      const [invert, setInvert] = React.useState(false);
+      return <div></div>;
+    };
+    const App = () => {
+      const [index, setIndex] = React.useState('xx');
+      const onSelect = (event) => {
+        setIndex(event.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="xx">Select your</option>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">Km & Miles</option>
+          </select>
+          <hr />
+          {index === 'xx' ? 'Select your units' : null}
+          {index === '0' ? <MinutesToHours /> : null}
+          {index === '1' ? <KmToMiles /> : null}
         </div>
       );
     };
