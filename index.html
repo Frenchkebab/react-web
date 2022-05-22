@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 
   <script type="text/babel">
-    function Btn({ text, onClick, fontSize }) {
+    function Btn({ text, onClick, fontSize = 14 }) {
       console.log(text, 'was rendered');
       return (
         <button
@@ -29,7 +29,7 @@
 
     const MemorizedBtn = React.memo(Btn);
     Btn.propTypes = {
-      text: PropTypes.string,
+      text: PropTypes.string.isRequired,
       fontSize: PropTypes.number,
     };
     const App = () => {
@@ -38,7 +38,7 @@
       return (
         <div>
           <MemorizedBtn text={value} onClick={changeValue} fontSize={18} />
-          <MemorizedBtn text={18} fontSize={'Continue'} />
+          <MemorizedBtn text={'Continue'} />
         </div>
       );
     };
