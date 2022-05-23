@@ -1,26 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-function Hello() {
-  useEffect(() => {
-    console.log('hi');
-    return () => {
-      console.log('bye');
-    };
-  }, []);
-  return <h1>Hello</h1>;
-}
+const App = () => {
+  const [toDo, setToDo] = useState('');
+  const [toDos, setToDos] = useState([]);
 
-function App() {
-  const [showing, setShowing] = useState(false);
+  const onChange = (event) => setToDo(event.target.value);
+  console.log(toDo);
 
-  const onClick = () => setShowing((prev) => !prev);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === '') {
+      return;
+    }
+
+    /* This does not work */
+    // setToDos((current) => {
+    //   current.push(toDo);
+    // });
+
+    setToDo('');
+    setToDos((currentArray) => [toDo, ...currentArray]); // state always has to be new!
+  };
+  console.log(toDos);
 
   return (
     <div>
-      {showing ? <Hello /> : null}
-      <button onClick={onClick}>{showing ? 'Hide' : 'Show'}</button>
+      <form onSubmit={onSubmit}>
+        <input type="text" value={toDo} placeholder="Write your to do..." onChange={onChange} />
+        <button>Add To Do</button>
+      </form>
     </div>
   );
-}
+};
 
 export default App;
