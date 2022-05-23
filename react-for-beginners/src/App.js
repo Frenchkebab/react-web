@@ -25,6 +25,7 @@ const App = () => {
 
   return (
     <div>
+      <h1>My To Dos {toDos.length}</h1>
       <form onSubmit={onSubmit}>
         <input type="text" value={toDo} placeholder="Write your to do..." onChange={onChange} />
         <button>Add To Do</button>
