@@ -30,6 +30,12 @@ const App = () => {
         <input type="text" value={toDo} placeholder="Write your to do..." onChange={onChange} />
         <button>Add To Do</button>
       </form>
+      <hr />
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 };
